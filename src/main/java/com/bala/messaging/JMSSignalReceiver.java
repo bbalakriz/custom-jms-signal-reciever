@@ -111,7 +111,6 @@ public class JMSSignalReceiver implements MessageListener {
                                                 .getNodeInstances();
 
                                         // get only active signal nodes
-
                                         Collection<String> activeNodesComposite = new ArrayList<>();
                                         System.out.println("=================================");
                                         System.out.println("All active signals in the process are: "
@@ -160,6 +159,7 @@ public class JMSSignalReceiver implements MessageListener {
     }
 
     // collect only active signal nodes
+    // TODO: if active signals on the boundary of nodes are required, extend this code further as required
     Collection<String> getActiveSignalNodes(Collection<NodeInstance> activeNodes,
             Collection<String> activeNodesComposite) {
         for (NodeInstance nodeInstance : activeNodes) {
