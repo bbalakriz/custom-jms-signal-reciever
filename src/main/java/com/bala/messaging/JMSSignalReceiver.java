@@ -214,45 +214,4 @@ public class JMSSignalReceiver implements MessageListener {
         // nothing matched return given deployment id
         return Collections.singletonList(deploymentId);
     }
-
-    void oldTrial() {
-
-        // List<NodeInstanceLog> log = engine.getAuditService()
-        // .findActiveProcessInstances(processInstanceId).;
-
-        // NodeInstanceContainer processInstance = (WorkflowProcessInstance)
-        // engine.getKieSession()
-        // .getProcessInstance(processInstanceId);
-        // Collection<NodeInstance> activeInstances =
-        // processInstance.getNodeInstances();
-
-        // System.out.println("===========================================");
-        // System.out.println("Process instance id:" + processInstanceId);
-
-        // System.out.println("Process id:" + processInstance.);
-        // System.out.println("Has Signal Completion:" +
-        // processInstance.hasSignalCompletion());
-        // System.out.println("Has Signal Completion:" + processInstance.);
-        // System.out.println("=========================================");
-
-        // for (NodeInstance nodeInstance : activeNodes) {
-        // if (nodeInstance instanceof EventNodeInstance) {
-        // String type = ((EventNodeInstance) nodeInstance).getEventNode().getType();
-
-        // for (NodeInstance nodeInstance : activeInstances) {
-        // System.out.println("=========================================");
-        // // System.out.println("Node name is:" + nodeInstance.getNodeName());
-        // // System.out.println("Node Id is:" + nodeInstance.getNodeId());
-        // System.out.println("=========================================");
-        // if (nodeInstance instanceof EventNodeInstance) {
-        // String uniqueId = ((EventNodeInstance) nodeInstance).getEventNode()
-        // .getUniqueId();
-        // String type = ((EventNodeInstance) nodeInstance).getEventNode().getType();
-        // System.out.println("============================================");
-        // System.out.println("Node type and uniqueid is:" + type + "," + uniqueId);
-
-        // engine.getKieSession().signalEvent(signal, data, processInstanceId);
-        // }
-        // }
-    }
 }
