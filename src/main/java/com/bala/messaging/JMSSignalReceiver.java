@@ -82,9 +82,9 @@ public class JMSSignalReceiver implements MessageListener {
                         logger.debug("Data read successfully with output {}", data);
 
                         engine = runtimeManager.getRuntimeEngine(ProcessInstanceIdContext.get(processInstanceId));
-                        System.out.println("=========================================");
-                        System.out.println("Signal is:" + signal);
-                        System.out.println("=========================================");
+                        logger.debug("=========================================");
+                        logger.debug("Signal is:" + signal);
+                        logger.debug("=========================================");
 
                         // perform operation for signal
                         if (signal != null) {
@@ -112,13 +112,15 @@ public class JMSSignalReceiver implements MessageListener {
 
                                         // get only active signal nodes
                                         Collection<String> activeNodesComposite = new ArrayList<>();
-                                        System.out.println("=================================");
-                                        System.out.println("All active signals in the process are: "
-                                                + getActiveSignalNodes(activeNodes, activeNodesComposite));
+                                        getActiveSignalNodes(activeNodes, activeNodesComposite);
+                                        
+                                        logger.debug("=================================");
+                                        logger.debug("All active signals in the process are: "
+                                                + activeNodesComposite);
 
                                         // if the incoming signal is in active state, fire it
                                         if (activeNodesComposite.contains(signal)) {
-                                            System.out.println("=============== Firing Signal for " + processInstanceId
+                                            logger.debug("=============== Firing Signal for " + processInstanceId
                                                     + " ==================");
                                             engine.getKieSession().signalEvent(signal, data, processInstanceId);
                                             break;
@@ -130,6 +132,8 @@ public class JMSSignalReceiver implements MessageListener {
                                                 logger.trace("retry sleeping got interrupted");
                                             }
                                         }
+                                    }else{
+                                    // broadcast the signal if the customer needs it
                                     }
                                 }
 
@@ -158,7 +162,8 @@ public class JMSSignalReceiver implements MessageListener {
 
     }
 
-    // collect only active signal nodes
+    // 1. collect only active signal nodes
+    // 2. to be extended for signals on boundary as well
     // TODO: if active signals on the boundary of nodes are required, extend this code further as required
     Collection<String> getActiveSignalNodes(Collection<NodeInstance> activeNodes,
             Collection<String> activeNodesComposite) {
